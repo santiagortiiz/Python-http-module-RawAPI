@@ -19,14 +19,14 @@ routes = [
         action="list"
     ),
     Route(
-        None, 
+        "book", 
         "/books/{book_id}", 
         controller=book.retrieve_book, 
         action="retrieve"
     ),
     Route(
-        "Books", 
-        "/books/{book_id}/{page_id}/{format_id}", 
+        "page", 
+        "/books/{book_id}/{page}", 
         controller=book.retrieve_page, 
         action="read"
     ),

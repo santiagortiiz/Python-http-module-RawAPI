@@ -41,8 +41,10 @@ class Book:
         except Exception as e:
             return str(e)
 
-    def retrieve_page(self, table=TABLE, book=None, page=None, **kwargs):
+    def retrieve_page(self, **kwargs):
         try:
-            return self.__store.retrieve_page(table, book, page)
+            book_id = int(kwargs.get('book_id', None))
+            page = int(kwargs.get('page', None))
+            return self.__store.retrieve_page('pages', book_id, page)
         except Exception as e:
             return str(e)

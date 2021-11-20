@@ -1,21 +1,22 @@
 # Standard libraries
 import os
+from dotenv import load_dotenv
+load_dotenv()
+
 
 # PostgreSQL
 import psycopg2 as pg
-
-# Mocks
-from store.mocks import BOOKS
 
 
 class Postgres:
     
     def __init__(self):
         self.__cnx = pg.connect(
-            user='postgres', 
-            password='r00t', 
-            host='localhost',
-            dbname='testdb',
+            host = os.environ.get('PG_HOST'),
+            port = os.environ.get('PORT'),
+            user = os.environ.get('PG_USER'),
+            password = os.environ.get('PG_PASSWORD'),
+            dbname = os.environ.get('PG_DB_NAME'),
         )
 
         self.__cursor = self.__cnx.cursor()
@@ -33,5 +34,13 @@ class Postgres:
         self.__cursor.execute(sql)
         return self.__cursor.fetchall()
 
-    def retrieve_page(self, table, book, page):
-        return self.__store.retrieve_page(table, book, page)
+    def retrieve_page(self, table, book_id, page):
+        sql = f'''
+            SELECT content
+            FROM {table}
+            WHERE 
+                book_id = {book_id} 
+                AND page = {page}
+            '''
+        self.__cursor.execute(sql)
+        return self.__cursor.fetchall()
