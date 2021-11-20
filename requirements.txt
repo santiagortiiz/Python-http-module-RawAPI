@@ -1,0 +1,13 @@
+# Router
+routes
+
+# Relational Database
+psycopg2
+
+# Non Relational Database
+pymongo
+dnspython
+certifi
+
+# Cache Database
+redis
