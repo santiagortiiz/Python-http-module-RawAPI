@@ -1,5 +1,4 @@
 __pycache__/
-rest-client/
 .env
 venv/
 *.ipynb

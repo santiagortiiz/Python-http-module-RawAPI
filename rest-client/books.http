@@ -1,0 +1,9 @@
+@localhost = http://localhost:8000
+
+### 
+get {{localhost}}/books/2 HTTP/1.1
+Content-Type: application/json
+
+###
+get {{localhost}}/books/43/1 HTTP/1.1
+Content-Type: application/json
